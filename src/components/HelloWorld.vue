@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import { Tweet } from "@/types/tweet";
 import TweetComponent from "../components/Tweet.vue";
+import TweetFormComponent from "../components/TweetForm.vue";
 
 const tweets = ref<Tweet[]>([
   {
@@ -14,37 +15,24 @@ const tweets = ref<Tweet[]>([
   }
 ]);
 
-const tweet = ref<Tweet>({
-  id: "",
-  description: ""
-});
-
-const onSubmit = () => {
+const onSubmit = (description: string) => {
   tweets.value = [
     ...tweets.value,
     {
       id: Math.random().toString(),
-      description: tweet.value.description,
+      description,
     }
   ];
-
-  tweet.value = {
-    id: "",
-    description: ""
-  };
 };
 
-const onDelete = (id: string) => {
-  tweets.value = tweets.value.filter((tweet) => tweet.id !== id);
-};
+// const onDelete = (id: string) => {
+//   tweets.value = tweets.value.filter((tweet) => tweet.id !== id);
+// };
 </script>
 
 <template>
   <h1>Twitter</h1>
-  <form @submit.prevent="onSubmit" class="tweet-form">
-    <textarea v-model="tweet.description"></textarea>
-    <button type="submit">Tweet</button>
-  </form>
+  <TweetFormComponent @submit="onSubmit" />
 
   <ul class="tweets">
     <li v-for="tweet in tweets">
