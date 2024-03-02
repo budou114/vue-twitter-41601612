@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-
-type Tweet = {
-  id: string;
-  description: string;
-};
+import { Tweet } from "@/types/tweet";
 
 const tweets = ref<Tweet[]>([
   {
@@ -51,10 +47,6 @@ const onDelete = (id: string) => {
 
   <ul class="tweets">
     <li v-for="tweet in tweets">
-      <div class="tweet">
-        <span>{{ tweet.description }}</span>
-        <button @click="() => onDelete(tweet.id)">Delete</button>
-      </div>
     </li>
   </ul>
 </template>
