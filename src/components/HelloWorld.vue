@@ -9,11 +9,11 @@ type Tweet = {
 const tweets = ref<Tweet[]>([
   {
     id: "1",
-    description: "Hello World1",
+    description: "Hello",
   },
   {
     id: "2",
-    description: "Hello World2",
+    description: "Example",
   }
 ]);
 
@@ -21,6 +21,8 @@ const tweet = ref<Tweet>({
   id: "",
   description: ""
 });
+
+const search = ref("");
 
 const onSubmit = () => {
   tweets.value = [
@@ -49,9 +51,12 @@ const onDelete = (id: string) => {
     <input type="text" v-model="tweet.description" />
     <button type="submit">Tweet</button>
   </form>
+
+  <input type="text" v-model="search" />
+
   <ul>
     <li v-for="tweet in tweets" :key="tweet.id">
-      <div>
+      <div v-if="tweet.description.includes(search)">
         <span>{{ tweet.description }}</span>
         <button @click="() => onDelete(tweet.id)">Delete</button>
       </div>
