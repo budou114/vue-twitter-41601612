@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { Tweet } from "@/types/tweet";
+import TweetComponent from "../components/Tweet.vue";
 
 const tweets = ref<Tweet[]>([
   {
@@ -47,6 +48,7 @@ const onDelete = (id: string) => {
 
   <ul class="tweets">
     <li v-for="tweet in tweets">
+      <TweetComponent :tweet="tweet" />
     </li>
   </ul>
 </template>
