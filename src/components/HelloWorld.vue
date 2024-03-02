@@ -25,9 +25,9 @@ const onSubmit = (description: string) => {
   ];
 };
 
-// const onDelete = (id: string) => {
-//   tweets.value = tweets.value.filter((tweet) => tweet.id !== id);
-// };
+const onDelete = (id: string) => {
+  tweets.value = tweets.value.filter((tweet) => tweet.id !== id);
+};
 </script>
 
 <template>
@@ -36,7 +36,7 @@ const onSubmit = (description: string) => {
 
   <ul class="tweets">
     <li v-for="tweet in tweets">
-      <TweetComponent :tweet="tweet" />
+      <TweetComponent :tweet="tweet" @delete="onDelete"/>
     </li>
   </ul>
 </template>
