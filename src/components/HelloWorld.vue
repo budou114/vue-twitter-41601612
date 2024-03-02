@@ -7,10 +7,21 @@ const tweets = ref([
   "Tweet3",
 ]);
 
+const tweet = ref("");
+
+const onSubmit = () => {
+  tweets.value.push(tweet.value);
+  tweet.value = "";
+};
+
 </script>
 
 <template>
   <h1>Twitter</h1>
+  <form @submit.prevent="onSubmit()">
+    <input type="text" v-model="tweet" />
+    <button type="submit">Tweet</button>
+  </form>
   <ul>
     <li v-for="tweet in tweets" :key="tweet">{{ tweet }}</li>
   </ul>
